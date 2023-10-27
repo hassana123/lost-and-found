@@ -17,13 +17,13 @@ const Navbar = () => {
 
             <div className=" sm:flex sm:items-center">
               <Link
-                to="/"
+                to="/register"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
               >
                 Sign up
               </Link>
               <Link
-                to="/Login"
+                to="/login"
                 className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600"
               >
                 Login

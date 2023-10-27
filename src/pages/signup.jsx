@@ -1,87 +1,181 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { database } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { auth, firestore } from "../firebase";
 import Navbar from "../components/Navbar";
-const signup = () => {
+import { useNavigate } from "react-router-dom";
+
+function signup() {
+  // State variables for form fields and error messages
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useNavigate();
 
-  const signUp = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(database, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        history("/home");
-      })
-      .catch((error) => {
-        console.log(error.code);
-        setError(error.code);
-      });
+  const navigate = useNavigate();
+  // Function to handle form submission
+  const handleSignup = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Basic form validation checks
+    if (!name || !phone || !email || !password || !confirmPassword) {
+      setError("All fields are required.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    try {
+      // Create a user with Firebase Authentication
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // Save user data to Firestore
+      await saveUserDataToFirestore(user.uid);
+      navigate("/login");
+      // Clear the form fields
+      setName("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setError("");
+    } catch (error) {
+      setError("Error creating the user. Please try again.");
+      console.error("Error signing up:", error);
+    }
   };
-  useEffect(() => {
-    const time = setTimeout(() => {
-      setError(error.code);
-    }, 2000);
-    return () => clearTimeout(time);
-  }, [error]);
+
+  const saveUserDataToFirestore = async (userId) => {
+    const usersCollection = collection(firestore, "users");
+    const userData = {
+      name: name,
+      phone: phone,
+      email: email,
+    };
+
+    // Add user data to Firestore
+    try {
+      await addDoc(usersCollection, userData);
+      console.log("User data saved to Firestore");
+    } catch (error) {
+      console.error("Error saving user data to Firestore:", error);
+    }
+  };
 
   return (
     <>
       <Navbar />
+      <div className="flex items-center justify-center my-10 min-h-screen">
+        <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
+            Sign Up
+          </h2>
+          <form onSubmit={handleSignup}>
+            {/* Display error message if there's an error */}
+            {error && (
+              <div className="mb-4 text-red-600 text-center">{error}</div>
+            )}
 
-      <form onSubmit={signUp}>
-        <div className="bg-grey-lighter min-h-screen flex flex-col">
-          <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-              <h1 className="mb-8 text-base text-center">
-                {" "}
-                {error && <div>{error}</div>}
-              </h1>
-              <h1 className="mb-8 text-3xl text-center">Sign up</h1>
+            {/* Name Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Name</legend>
+              <div className="mb-4">
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="eg: John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-              <input
-                type="email"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-              />
+            {/* Phone Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Phone Number</legend>
+              <div className="mb-4">
+                <input
+                  type="text"
+                  id="phone"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="eg: 08122990011"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-              <input
-                type="password"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+            {/* Email Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Email</legend>
+              <div className="mb-4">
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="eg: JohnDoe12@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-              <button
-                className="w-full text-center py-3 rounded bg-green hover:bg-green-dark  my-1"
-                type="submit"
-              >
-                Sign Up
-              </button>
-            </div>
+            {/* Password Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Password</legend>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  id="password"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-            <div className="text-grey-dark mt-6">
-              Already have an account?
-              <a
-                className="no-underline border-b border-blue text-blue-400"
-                href="./login"
-              >
-                Log in
-              </a>
-              .
-            </div>
-          </div>
+            {/* Confirm Password Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">
+                Confirm Password
+              </legend>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="********"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+            </fieldset>
+
+            {/* Signup Button */}
+            <button
+              type="submit"
+              className="w-full  py-4 bg-primary text-white rounded-md"
+            >
+              Sign Up
+            </button>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   );
-};
+}
 
 export default signup;

@@ -1,88 +1,130 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState, useEffect } from "react";
-import { database } from "../firebase";
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../auth";
 import Navbar from "../components/Navbar";
 
-const login = () => {
+function Login() {
+  // State variables for email, password, and error message
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const history = useNavigate();
+  const [error, setError] = useState(null);
 
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(database, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-        history("/home");
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.code);
-        setError(error.code);
-      });
+  const navigate = useNavigate();
+
+  // Function to handle user login
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Basic form validation
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
+    try {
+      setError(null); // Clear any previous error
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log("User logged in successfully");
+      const user = userCredential.user;
+      const userId = user.uid;
+      // Store user data in local storage
+      loginUser(user, userId);
+      // redirect the user
+      navigate("/dashboard");
+    } catch (error) {
+      setError("Invalid email or password. Please try again.");
+      console.error("Error signing in:", error);
+    }
+
+    // Clear the email and password fields after login
+    setEmail("");
+    setPassword("");
   };
-
-  useEffect(() => {
-    const time = setTimeout(() => {
-      setError(error.code);
-    }, 2000);
-    return () => clearTimeout(time);
-  }, [error]);
 
   return (
     <>
       <Navbar />
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+          <h2 className="text-2xl font-semibold text-center mb-4 text-secondary">
+            Login
+          </h2>
+          <form onSubmit={handleLogin}>
+            {/* Display error message if there's an error */}
+            {error && (
+              <div className="mb-4 text-red-600 text-center ">{error}</div>
+            )}
 
-      <form onSubmit={signIn}>
-        <div className="bg-grey-lighter min-h-screen flex flex-col">
-          <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-              <h1 className="mb-8 text-base text-center">
-                {" "}
-                {error && <div>{error}</div>}
-              </h1>
-              <h1 className="mb-8 text-3xl text-center">Login</h1>
+            {/* Email Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Email</legend>
+              <div className="mb-4">
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-              <input
-                type="email"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-              />
+            {/* Password Input */}
+            <fieldset className="border border-border p-1 my-10 rounded-lg">
+              <legend className="block text-legend p-5">Password</legend>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  id="password"
+                  className="w-full px-5 border-none outline-none"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </fieldset>
 
-              <input
-                type="password"
-                className="block border border-grey-light w-full p-3 rounded mb-4"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-              />
+            {/* Login Button */}
+            <button
+              type="submit"
+              className="w-full py-4 bg-primary text-white rounded-md py-2"
+            >
+              Login
+            </button>
+          </form>
 
-              <button
-                className="w-full text-center py-3 rounded bg-green hover:bg-green-dark  my-1"
-                type="submit"
-              >
-                Login
-              </button>
-            </div>
-            <div className="text-grey-dark mt-6">
-              Don;t have an account?
+          <div className="text-center mt-4 text-secondary">
+            <small>
+              Haven't registered or signed up yet?
               <a
-                className="no-underline border-b border-blue text-blue-400"
-                href="./signup"
+                onClick={() => navigate("/register")}
+                className="text-blue-500"
               >
-                sign up
+                &nbsp;Click here
               </a>
-            </div>
+            </small>
+            <br />
+            <small>
+              Forgot your password?
+              <a
+                onClick={() => navigate("/forgotpassword")}
+                className="text-blue-500"
+              >
+                &nbsp;Click here
+              </a>
+            </small>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
-};
+}
 
-export default login;
+export default Login;

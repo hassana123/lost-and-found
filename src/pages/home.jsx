@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { signOut } from "firebase/auth";
-
-import { database } from "../firebase";
+import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 // import { ReactSortable } from "react-sortablejs";
@@ -41,42 +39,14 @@ function home() {
 
   const history = useNavigate();
 
-  const handleClick = () => {
-    signOut(database).then((val) => {
-      console.log(val, "val");
-      history("/");
-    });
-  };
+  const handleClick = () => {};
   return (
-    <div>
-      <div className="bg-gray-100 font-sans w-full  m-0">
-        <div className="bg-white shadow">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between py-4">
-              <div className=" sm:flex sm:items-center">
-                <Link
-                  to="/home"
-                  className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
-                >
-                  Home
-                </Link>
-              </div>
-
-              <div className=" sm:flex sm:items-center">
-                <Link
-                  onClick={handleClick}
-                  className="text-gray-800 text-sm font-semibold border px-4 py-2 rounded-lg hover:text-purple-600 hover:border-purple-600"
-                >
-                  sign out
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    <>
+      <Navbar />
+      <div>
+        <h1>home</h1>
       </div>
-
-      <h1>home</h1>
-    </div>
+    </>
   );
 }
 export default home;
