@@ -11,11 +11,35 @@ const Navbar = () => {
                 to="/"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
               >
-                Home
+                Logo
               </Link>
             </div>
 
             <div className=" sm:flex sm:items-center">
+              <Link
+                to="/"
+                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
+              >
+                Home
+              </Link>
+              <Link
+                to="#"
+                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
+              >
+                About
+              </Link>
+              <Link
+                to="#"
+                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
+              >
+                Testimonial
+              </Link>
+              <Link
+                to="#"
+                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
+              >
+                Contact
+              </Link>
               <Link
                 to="/register"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
