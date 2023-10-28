@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import HomeLayout from "../components/HomeLayout";
 import mainpic from "../assests/images/Group 304.png";
 import mainfeature1 from "../assests/images/Frame 91.png";
 import mainfeature2 from "../assests/images/Frame 91 (1).png";
@@ -12,7 +13,7 @@ import icon3 from "../assests/icons/icon3.png";
 import icon4 from "../assests/icons/icon4.png";
 function home() {
   return (
-    <>
+    <HomeLayout>
       <section className="md:flex w-[80%] mx-auto mt  justify-around p-5 px-8 items-center">
         <div className="text-center md:text-left">
           <h1 className="text-[#2F327D] text-4xl font-bold mt-20 ">
@@ -107,7 +108,7 @@ function home() {
           </div>
         </div>
       </section>
-    </>
+    </HomeLayout>
   );
 }
 export default home;

@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../auth";
-import Navbar from "../components/Navbar";
+import HomeLayout from "../components/HomeLayout";
 
 function Login() {
   // State variables for email, password, and error message
@@ -48,8 +48,7 @@ function Login() {
   };
 
   return (
-    <>
-      <Navbar />
+    <HomeLayout>
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-4 text-secondary">
@@ -123,7 +122,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </>
+    </HomeLayout>
   );
 }
 
