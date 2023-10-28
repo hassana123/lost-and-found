@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import LostItems from "./pages/lostItems";
+import About from "./pages/about";
 import ReportLostItem from "./pages/reportLostItem";
 import LostItemDetails from "./pages/details";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/report" element={<ReportLostItem />} />
           <Route path="/items" element={<LostItems />} />

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -15,7 +16,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className=" sm:flex sm:items-center">
+            <div className=" sm:flex sm:items-center hidden md:block">
               <Link
                 to="/"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
@@ -23,7 +24,7 @@ const Navbar = () => {
                 Home
               </Link>
               <Link
-                to="#"
+                to="/about"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
               >
                 About
@@ -53,6 +54,7 @@ const Navbar = () => {
                 Login
               </Link>
             </div>
+            <FaBars className="block sm:hidden" />
           </div>
         </div>
       </div>
