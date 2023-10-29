@@ -74,7 +74,11 @@ function signup() {
   };
 
   return (
+
+    <>
+
     <HomeLayout>
+
       <div className="flex items-center justify-center my-10 min-h-screen">
         <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
