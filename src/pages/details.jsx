@@ -59,12 +59,17 @@ function LostItemDetails() {
           // Update the local item data to reflect the claim
           setItem({ ...itemData, claimed: true });
 
-          // Show the "Connecting to WhatsApp" message and schedule the redirect
           setShowConnectingMessage(true);
+
           setTimeout(() => {
+            let message = `Hello ${itemData.seekerName}`;
+            let phone = itemData.seekerPhone;
             setShowConnectingMessage(false);
-            window.location.href = `https://wa.me/${user.phone}`;
-          }, 5000); // 5000 milliseconds (5 seconds)
+
+            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+
+            window.open(whatsappURL, "_blank");
+          }, 15000);
         }
       }
     } catch (error) {

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logoutUser } from "../auth";
 import vector from "../assests/icons/vector.svg";
 import { AiOutlineSearch } from "react-icons/ai";
 import { HiOutlineUser, HiOutlineMenu } from "react-icons/hi";
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
+  const navigate = useNavigate();
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
-
+  const logout = (e) => {
+    e.preventDefault();
+    navigate("/logout");
+    logoutUser();
+  };
   return (
     <main className="relative">
       <div className="bg-white p-4 flex items-center justify-between">
@@ -33,8 +39,8 @@ const DashboardLayout = ({ children }) => {
               placeholder="Search..."
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-[#FB7E13]"
             />
-            <button className="absolute right-0 top-0 m-2 text-[#FB7E13]">
-              <AiOutlineSearch size={24} />
+            <button className="absolute right-0 top-0 m-2 ">
+              <AiOutlineSearch color="#FB7E13" size={24} />
             </button>
           </div>
         </div>
@@ -102,6 +108,20 @@ const DashboardLayout = ({ children }) => {
                 Claimed Items
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/logout"
+                onClick={logout}
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex gap-3 w-full p-2  border-l-[#FB7E13] border-l-2 bg-[#FFF5E5] text-[#FB7E13] font-bold my-5"
+                    : "flex gap-3 w-full my-5 p-2"
+                }
+              >
+                <img src={vector} alt="" />
+                Logout
+              </NavLink>
+            </li>
           </ul>
         </div>
         {/*desktop view side navigation*/}
@@ -157,6 +177,20 @@ const DashboardLayout = ({ children }) => {
                 }
               >
                 <img src={vector} alt="" /> Claimed Items
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/logout"
+                onClick={logout}
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex gap-3 w-full p-2  bg-[#50898926] text-[#1C1C1CF7] font-bold my-5"
+                    : "flex gap-3 w-full my-5 p-2"
+                }
+              >
+                <img src={vector} alt="" />
+                Logout
               </NavLink>
             </li>
           </ul>

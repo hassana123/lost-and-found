@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <div className="bg-[#060218] text-white py-5  mt-12">
-        <div className="block w-[90%]  mx-auto md:flex items-center justify-between mb-4">
+        <div className="block w-[90%]  mx-auto md:flex justify-between mb-4">
           <div>
             <h2 className="font-bold mb-10">Lost&Found Hub</h2>
             <ul className="grid gap-4">
@@ -22,7 +22,7 @@ const Footer = () => {
             <div className="block md:flex">
               <input
                 type="text"
-                className=" mb-10 mr-5 bg-transparent border-2 px-4 py-2 border-solid border-white rounded-md"
+                className=" mb-10 mr-2 bg-transparent border-2 px-4 py-2 border-solid border-white rounded-md"
                 placeholder="Your Email"
               />
               <button className="bg-white text-black p-3 rounded-md">

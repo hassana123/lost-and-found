@@ -84,42 +84,50 @@ function ReportLostItem() {
   return (
     <DashboardLayout>
       {formSubmitted ? ( // Conditional rendering based on form submission status
-        <div>
-          <p>
+        <section className="text-center mt-20">
+          <p className="text-[#2F327D] text-2xl font-bold mb-5">
+            Report Submitted Successfully
+          </p>
+          <p className="text-[#5F5F5FC2] text-lg mb-10">
             Thanks for reporting the lost item. Your item has been recorded.
           </p>
-          <button
-            className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600"
-            onClick={() => setFormSubmitted(false)} // Handle making another report
-          >
-            Make Another Report
-          </button>
-          <button
-            className="bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600"
-            onClick={() => navigate("/dashboard")} // Handle going to the homepage
-          >
-            Go to Homepage
-          </button>
-        </div>
+          <div className="flex items-center justify-center gap-5">
+            <button
+              className="bg-[#0A032A] text-white rounded-md py-2 px-4 hover:bg-[#508989] focus:outline-none"
+              onClick={() => setFormSubmitted(false)} // Handle making another report
+            >
+              Make Another Report
+            </button>
+            <button
+              className="bg-[#0A032A] text-white rounded-md py-2 px-4 hover:bg-[#508989] focus:outline-none"
+              onClick={() => navigate("/dashboard")} // Handle going to the homepage
+            >
+              Go to Homepage
+            </button>
+          </div>
+        </section>
       ) : (
-        <div className="container mx-auto p-4 flex">
-          <form onSubmit={handleSubmit} className="max-w-md w-[70%]">
+        <div className="container mx-auto p-4 ">
+          <form
+            onSubmit={handleSubmit}
+            className="w-[90%] md:w-[70%] text-[#333333]"
+          >
             <h1 className="text-2xl font-semibold mb-4">Report Lost Item</h1>
             <div className="mb-4">
-              <label className="block text-gray-600">Item Name</label>
+              <label className="block ">Item Name</label>
               <input
                 type="text"
-                className="w-full border rounded-md px-3 py-2"
+                className="w-full bg-[#E5EDED66] text-[#666666] my-2 border-none rounded-md px-3 py-2"
                 value={itemName}
                 onChange={(e) => setItemName(e.target.value)}
                 required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-600">Location Found</label>
+              <label className="block">Location Found</label>
               <input
                 type="text"
-                className="w-full border rounded-md px-3 py-2"
+                className="w-full border-none bg-[#E5EDED66] my-2 text-[#666666] rounded-md px-3 py-2"
                 value={locationFound}
                 onChange={(e) => setLocationFound(e.target.value)}
                 required
@@ -127,23 +135,23 @@ function ReportLostItem() {
             </div>
             <div className="mb-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <fieldset className="border border-border rounded-md p-2">
-                  <legend className="block text-legend border-none outline-none">
+                <fieldset className="border rounded-md p-1">
+                  <legend className="block border-none outline-none">
                     Found Date
                   </legend>
                   <input
                     type="date"
-                    className="w-full border rounded-md px-3 py-2"
+                    className="w-full border-none rounded-md px-3 py-2"
                     value={foundDate}
                     onChange={(e) => setFoundDate(e.target.value)}
                     required
                   />
                 </fieldset>
-                <fieldset className="border border-border rounded-md p-2">
+                <fieldset className="border rounded-md p-1">
                   <legend className="block text-legend">Found Time</legend>
                   <input
                     type="time"
-                    className="w-full border-none outline-none"
+                    className="w-full  border-none outline-none"
                     value={foundTime}
                     onChange={(e) => setFoundTime(e.target.value)}
                     required
@@ -152,33 +160,31 @@ function ReportLostItem() {
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-600">Description</label>
+              <label className="block ">Description</label>
               <textarea
-                className="w-full border rounded-md px-3 py-2"
+                className="w-full border  border-2 rounded-md px-3 py-2"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
               ></textarea>
             </div>
-            <div className="mb-4">
-              <label className="block text-gray-600">Upload Image</label>
+            <div className="mb-4 ">
+              <label className=" block  text-gray-600">Upload Image</label>
               <input
+                className="w-[70%] my-2"
                 type="file"
                 accept="image/*"
+                placeholder="Uplaod Image"
                 onChange={handleImageUpload}
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600"
+              className="w-full bg-primary text-white rounded-md py-2 px-4 hover:bg-[#FB7E13]"
             >
               Report
             </button>
           </form>
-          <div>
-            <img src="" alt="" />
-            <p>Back</p>
-          </div>
         </div>
       )}
     </DashboardLayout>

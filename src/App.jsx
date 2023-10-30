@@ -1,9 +1,9 @@
 import Home from "./pages/home";
 import "./index.css";
 import Dashboard from "./pages/dashboard";
-
 // import ForgotPassword from "./pages/ForgotPassword"
 import Login from "./pages/login";
+import Logout from "./pages/logout";
 import Signup from "./pages/signup";
 import LostItems from "./pages/lostItems";
 import About from "./pages/about";
@@ -28,6 +28,7 @@ function App() {
           <Route path="/items" element={<LostItems />} />
           <Route path="/details/:id" element={<LostItemDetails />} />
           <Route path="/claimed" element={<ClaimedItems />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
     </BrowserRouter>

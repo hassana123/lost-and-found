@@ -30,8 +30,10 @@ function LostItems() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-4">Lost Items</h1>
+    <div className="container mt-10  mx-auto p-4">
+      <h1 className="text-2xl font-semibold mb-10  text-secondary">
+        Lost Items
+      </h1>
 
       {loading ? (
         <p className="loader">Loading...</p>

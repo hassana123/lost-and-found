@@ -112,14 +112,20 @@ function Login() {
           <div className="text-center mt-4 text-secondary">
             <small>
               Haven't registered or signed up yet?
-              <a onClick={() => navigate("/register")} className="text-primary">
+              <a
+                onClick={() => navigate("/register")}
+                className="text-primary font-bold"
+              >
                 &nbsp;Click here
               </a>
             </small>
             <br />
             <small>
               Forgot your password?
-              <a onClick={() => navigate("/")} className="text-primary">
+              <a
+                onClick={() => navigate("/")}
+                className="text-primary font-bold"
+              >
                 &nbsp;Click here
               </a>
             </small>
