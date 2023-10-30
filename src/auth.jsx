@@ -5,13 +5,25 @@ export const isAuthenticated = () => {
 };
 
 // Function to log the user in and store user data in local storage
-export const loginUser = (user, userId) => {
+export const loginUser = (userData, userId) => {
   localStorage.setItem("userId", userId);
-  // localStorage.setItem("userName", user.name);
+  localStorage.setItem("user", JSON.stringify(userData));
+};
+// Function to get the user data from local storage
+export const getUser = () => {
+  const userId = localStorage.getItem("userId");
+  const userData = localStorage.getItem("user");
+  if (userId && userData) {
+    return {
+      userId: userId,
+      user: JSON.parse(userData), // Parse the stored JSON string
+    };
+  }
+  return null; // Return null if either the userId or userData is not found
 };
 
 // Function to log the user out and clear local storage
 export const logoutUser = () => {
   localStorage.removeItem("userId");
-  //localStorage.removeItem("userName");
+  localStorage.removeItem("user");
 };

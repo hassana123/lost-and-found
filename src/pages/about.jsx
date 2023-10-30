@@ -3,10 +3,10 @@ import icon1 from "../assests/icons/icon1.png";
 import icon2 from "../assests/icons/icon2.png";
 import icon3 from "../assests/icons/icon3.png";
 import icon4 from "../assests/icons/icon4.png";
-
+import HomeLayout from "../components/HomeLayout";
 const about = () => {
   return (
-    <div>
+    <HomeLayout>
       <section className="grid md:grid-cols-2 gap-[4rem] items-center justify-center w-[80%] mx-auto mt-[9rem]">
         <img src={mainfeature3} alt="" />
         <div>
@@ -26,7 +26,7 @@ const about = () => {
         <h1 className="text-[#2F327D] text-2xl text-center font-bold mt-20 mb-10 ">
           Our Values
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 justify-evenly w-5/6 mx-auto gap-10  items-center text-center">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-evenly w-[90%] mx-auto gap-10  items-center text-center">
           <div className="grid items-center">
             <img src={icon1} className="mx-auto" alt="" />
             <h3 className="font-bold my-1">Community</h3>
@@ -58,7 +58,7 @@ const about = () => {
           </div>
         </div>
       </section>
-    </div>
+    </HomeLayout>
   );
 };
 

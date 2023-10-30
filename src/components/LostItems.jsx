@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { firestore } from "../firebase";
+import icon from "../assests/icons/location.svg";
 import { NavLink } from "react-router-dom"; // Import NavLink instead of Link
 
 function LostItems() {
@@ -33,23 +34,31 @@ function LostItems() {
       <h1 className="text-2xl font-semibold mb-4">Lost Items</h1>
 
       {loading ? (
-        <p>Loading...</p>
+        <p className="loader">Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {lostItems.map((item) => (
             <NavLink
               to={`/details/${item.id}`} // Pass the item's ID as a URL parameter
               key={item.id}
               className="text-black no-underline"
             >
-              <div key={item.id} className="bg-white p-4 rounded-md shadow-md">
-                <img src={item.image} alt={item.name} />
-                <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
-                <p className="text-gray-600 mb-4">Location: {item.location}</p>
-                {/* <p className="text-gray-600 mb-4">
-                Date: {item.date}, Time: {item.time}
-              </p> */}
-                {/* <p className="text-gray-600">Description: {item.desc}</p> */}
+              <div key={item.id} className="w-[100%] rounded-xl shadow-md">
+                <img
+                  className="w-[100%] rounded-tl-xl rounded-tr-xl h-[25vh]"
+                  src={item.image}
+                  alt={item.name}
+                />
+
+                <div className="p-5  bg-[#FCA31126] text-[#1C1C1CF7]">
+                  <h2 className="text-capitalize text-xl my-2 font-semibold">
+                    {item.name}
+                  </h2>
+                  <div className="flex gap-3">
+                    <img src={icon} alt="location icon" />
+                    <p className="text-gray-600 ">Location: {item.location}</p>
+                  </div>
+                </div>
               </div>
             </NavLink>
           ))}

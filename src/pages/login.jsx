@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../auth"; 
+import { loginUser } from "../auth";
+import { firestore } from "../firebase";
 import HomeLayout from "../components/HomeLayout";
 
 function Login() {
@@ -31,10 +33,18 @@ function Login() {
         password
       );
       console.log("User logged in successfully");
-      const user = userCredential.user;
-      const userId = user.uid;
+      const userDoc = userCredential.user;
+      const userId = userDoc.uid;
       // Store user data in local storage
-      loginUser(user, userId);
+      const userRef = doc(firestore, "users", userId);
+      const user = await getDoc(userRef);
+      if (user.exists()) {
+        const userData = user.data();
+        // Store user data in local storage
+        loginUser(userData, userId); // Pass user data to the loginUser function
+      } else {
+        console.error("User document not found in Firestore.");
+      }
       // redirect the user
       navigate("/dashboard");
     } catch (error) {
@@ -48,11 +58,7 @@ function Login() {
   };
 
   return (
-
-    <>
-
     <HomeLayout>
-
       <div className="flex flex-col items-center justify-center min-h-screen">
         <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-4 text-secondary">
@@ -106,20 +112,14 @@ function Login() {
           <div className="text-center mt-4 text-secondary">
             <small>
               Haven't registered or signed up yet?
-              <a
-                onClick={() => navigate("/register")}
-                className="text-blue-500"
-              >
+              <a onClick={() => navigate("/register")} className="text-primary">
                 &nbsp;Click here
               </a>
             </small>
             <br />
             <small>
               Forgot your password?
-              <a
-                onClick={() => navigate("/forgotpassword")}
-                className="text-blue-500"
-              >
+              <a onClick={() => navigate("/")} className="text-primary">
                 &nbsp;Click here
               </a>
             </small>

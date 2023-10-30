@@ -13,7 +13,7 @@ import About from "../pages/about";
 function home() {
   return (
     <HomeLayout>
-      <section className="md:flex w-[80%] mx-auto mt  justify-around p-5 px-8 items-center">
+      <section className="block md:flex justify-center gap-5 w-[90%] mx-auto items-center">
         <div className="text-center md:text-left">
           <h1 className="text-[#2F327D] text-4xl font-bold mt-20 ">
             Lost and Found Hub:
@@ -38,7 +38,7 @@ function home() {
         <h1 className="text-[#2F327D] text-2xl mb-5 text-center font-bold mt-20 ">
           Our Main Features
         </h1>
-        <div className="grid md:grid-cols-2 justify-center gap-[4rem] w-[80%] mx-auto ">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 justify-center gap-5 w-[90%] mx-auto ">
           <div className="W-[90%]">
             <img src={mainfeature1} className="w-full" alt="" />
             <h4 className="text-center">Report a Lost Item</h4>
@@ -58,13 +58,12 @@ function home() {
         </div>
       </section>
       {/* about  */}
-      <About />
 
       <section>
         <h1 className="text-[#2F327D] text-2xl text-center font-bold mt-20 mb-10 ">
           Our Values
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 justify-evenly w-5/6 mx-auto gap-10  items-center text-center">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-evenly w-[90%] mx-auto gap-5  items-center text-center">
           <div className="grid items-center">
             <img src={icon1} className="mx-auto" alt="" />
             <h3 className="font-bold my-1">Community</h3>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { firestore } from "../firebase";
 import requireAuth from "../requireAuth";
+import { getUser } from "../auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 function ReportLostItem() {
   const [itemName, setItemName] = useState("");
@@ -13,7 +14,10 @@ function ReportLostItem() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const userId = localStorage.getItem("userId");
+  const user = getUser();
+  const userId = user.userId;
+  //console.log(userId);
+  //console.log(user);
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -30,6 +34,8 @@ function ReportLostItem() {
       desc: description,
       image: imageURL,
       timestamp: timestamp,
+      seekerName: user.user.name,
+      seekerPhone: user.user.phone,
     };
     // Add form data to a new collection in Firestore
     try {
@@ -52,6 +58,7 @@ function ReportLostItem() {
         const downloadURL = await getDownloadURL(snapshot.ref);
 
         const timestamp = Timestamp.now();
+
         // Save the item data to Firestore with the image URL
         saveItemToFirestore(userId, downloadURL, timestamp);
         setFormSubmitted(true);
@@ -63,7 +70,6 @@ function ReportLostItem() {
       // If no image is selected, save the item data without an image URL
       saveItemToFirestore(userId, "");
       setFormSubmitted(true);
-      saveItemToFirestore(userId, downloadURL, timestamp);
     }
     setItemName("");
     setLocationFound("");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { auth, firestore } from "../firebase";
 import HomeLayout from "../components/HomeLayout";
 import { useNavigate } from "react-router-dom";
@@ -57,7 +57,7 @@ function signup() {
   };
 
   const saveUserDataToFirestore = async (userId) => {
-    const usersCollection = collection(firestore, "users");
+    const usersCollection = doc(firestore, "users", userId);
     const userData = {
       name: name,
       phone: phone,
@@ -66,7 +66,7 @@ function signup() {
 
     // Add user data to Firestore
     try {
-      await addDoc(usersCollection, userData);
+      await setDoc(usersCollection, userData);
       console.log("User data saved to Firestore");
     } catch (error) {
       console.error("Error saving user data to Firestore:", error);
@@ -74,11 +74,7 @@ function signup() {
   };
 
   return (
-
-    <>
-
     <HomeLayout>
-
       <div className="flex items-center justify-center my-10 min-h-screen">
         <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
@@ -175,6 +171,21 @@ function signup() {
               Sign Up
             </button>
           </form>
+          <div className="text-center mt-4 text-secondary">
+            <small>
+              Already have an Account
+              <a onClick={() => navigate("/login")} className="text-primary">
+                &nbsp;Click here
+              </a>
+            </small>
+            <br />
+            <small>
+              Forgot your password?
+              <a onClick={() => navigate("/")} className="text-primary">
+                &nbsp;Click here
+              </a>
+            </small>
+          </div>
         </div>
       </div>
     </HomeLayout>
