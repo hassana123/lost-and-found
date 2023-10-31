@@ -101,7 +101,7 @@ function profilePage() {
                 <img
                   src={user.user.profilePicture}
                   alt="Profile"
-                  className="w-[60%] h-[35vh] mx-autorounded-[100%]"
+                  className="w-[60%] h-[35vh] mx-auto rounded-[100%]"
                 />
               </div>
             ) : (
