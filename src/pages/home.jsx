@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import HomeLayout from "../components/HomeLayout";
 import mainpic from "../assests/images/Group 304.png";
 import mainfeature1 from "../assests/images/Frame 91.png";
@@ -9,7 +8,7 @@ import icon1 from "../assests/icons/icon1.png";
 import icon2 from "../assests/icons/icon2.png";
 import icon3 from "../assests/icons/icon3.png";
 import icon4 from "../assests/icons/icon4.png";
-import About from "../pages/about";
+
 function home() {
   return (
     <HomeLayout>
@@ -27,9 +26,12 @@ function home() {
             belongings.
           </p>
           <div className="flex items-center gap-4 justify-center md:justify-normal">
-            <button className="px-8 py-2 rounded-md shadow-sm bg-[#0A032A]  shadow-slate-400  text-white just">
-              Get Started
-            </button>
+            <Link to="/register">
+              {" "}
+              <button className="px-8 py-2 rounded-md shadow-sm bg-[#0A032A]  shadow-slate-400  text-white just">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
         <img src={mainpic} className="md:w-[40%]" alt="" />

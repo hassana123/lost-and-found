@@ -36,16 +36,11 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/about"
-                className=" block block my-5 text-white text-sm font-semibold hover:text-purple-600 mr-4"
+                className="  block my-5 text-white text-sm font-semibold hover:text-purple-600 mr-4"
               >
                 About
               </Link>
-              <Link
-                to="#"
-                className="text-white block my-5 text-sm font-semibold hover:text-purple-600 mr-4"
-              >
-                Testimonial
-              </Link>
+
               <Link
                 to="#"
                 className="text-white block my-5 text-sm font-semibold hover:text-purple-600 mr-4"
@@ -79,12 +74,7 @@ const Navbar = () => {
               >
                 About
               </Link>
-              <Link
-                to="#"
-                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
-              >
-                Testimonial
-              </Link>
+
               <Link
                 to="#"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"

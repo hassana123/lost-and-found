@@ -38,7 +38,7 @@ function LostItems() {
       {loading ? (
         <p className="loader">Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {lostItems.map((item) => (
             <NavLink
               to={`/details/${item.id}`} // Pass the item's ID as a URL parameter
@@ -52,7 +52,7 @@ function LostItems() {
                   alt={item.name}
                 />
 
-                <div className="p-5  bg-[#FCA31126] text-[#1C1C1CF7]">
+                <div className="p-8  text-[#1C1C1CF7]">
                   <h2 className="text-capitalize text-xl my-2 font-semibold">
                     {item.name}
                   </h2>

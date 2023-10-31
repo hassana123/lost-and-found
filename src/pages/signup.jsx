@@ -76,25 +76,25 @@ function signup() {
   return (
     <HomeLayout>
       <div className="flex items-center justify-center my-10 min-h-screen">
-        <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+        <div className="w-4/6 p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
             Sign Up
           </h2>
-          <form onSubmit={handleSignup}>
+          <form onSubmit={handleSignup} className="grid md:grid-cols-2 gap-8">
             {/* Display error message if there's an error */}
             {error && (
               <div className="mb-4 text-red-600 text-center">{error}</div>
             )}
 
             {/* Name Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
-              <legend className="block text-legend p-5">Name</legend>
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Name</legend>
               <div className="mb-4">
                 <input
                   type="text"
                   id="name"
                   className="w-full px-5 border-none outline-none"
-                  placeholder="eg: John Doe"
+                  placeholder="e.g. John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -102,14 +102,14 @@ function signup() {
             </fieldset>
 
             {/* Phone Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
-              <legend className="block text-legend p-5">Phone Number</legend>
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Phone Number</legend>
               <div className="mb-4">
                 <input
                   type="text"
                   id="phone"
                   className="w-full px-5 border-none outline-none"
-                  placeholder="eg: 08122990011"
+                  placeholder="e.g. 08122990011"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -117,14 +117,14 @@ function signup() {
             </fieldset>
 
             {/* Email Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
-              <legend className="block text-legend p-5">Email</legend>
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Email</legend>
               <div className="mb-4">
                 <input
                   type="email"
                   id="email"
                   className="w-full px-5 border-none outline-none"
-                  placeholder="eg: JohnDoe12@gmail.com"
+                  placeholder="e.g. email@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -132,8 +132,8 @@ function signup() {
             </fieldset>
 
             {/* Password Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
-              <legend className="block text-legend p-5">Password</legend>
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Password</legend>
               <div className="mb-4">
                 <input
                   type="password"
@@ -147,8 +147,8 @@ function signup() {
             </fieldset>
 
             {/* Confirm Password Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
-              <legend className="block text-legend p-5">
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">
                 Confirm Password
               </legend>
               <div className="mb-4">
@@ -164,13 +164,13 @@ function signup() {
             </fieldset>
 
             {/* Signup Button */}
-            <button
-              type="submit"
-              className="w-full  py-4 bg-primary text-white rounded-md"
-            >
-              Sign Up
-            </button>
           </form>
+          <button
+            type="submit"
+            className="w-full  p-2 bg-primary text-white rounded-md"
+          >
+            Sign Up
+          </button>
           <div className="text-center mt-4 text-secondary">
             <small>
               Already have an Account

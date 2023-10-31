@@ -19,10 +19,10 @@ const Footer = () => {
             <h2 className="font-bold mb-10 mt-5">
               Subscribe to our email newsletter
             </h2>
-            <div className="block md:flex">
+            <div className="block md:flex items-center gap-3">
               <input
                 type="text"
-                className=" mb-10 mr-2 bg-transparent border-2 px-4 py-2 border-solid border-white rounded-md"
+                className=" bg-transparent border-2 px-4 py-2 border-solid border-white rounded-md"
                 placeholder="Your Email"
               />
               <button className="bg-white text-black p-3 rounded-md">
