@@ -3,6 +3,8 @@ import requireAuth from "../requireAuth";
 import DashboardLayout from "../components/DashboardLayout";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { firestore } from "../firebase";
+import { FaArrowLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 function claimedItems() {
   const [claimedItems, setClaimedItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,9 @@ function claimedItems() {
   console.log(claimedItems);
   return (
     <DashboardLayout>
+      <NavLink className="float-right my-5" to="/dashboard">
+        <FaArrowLeft />
+      </NavLink>
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-semibold text-secondary mb-4">
           Claimed Items
@@ -47,15 +52,13 @@ function claimedItems() {
                   alt={item.name}
                 />
 
-                <div className="p-5  bg-[#FCA31126] text-[#1C1C1CF7]">
+                <div className="p-3  bg-[#FCA31126] text-[#1C1C1CF7]">
                   <div>
-                    <h2 className="text-capitalize text-xl my-2 font-semibold">
-                      {item.name}
-                    </h2>
+                    <h2 className="text-xl my-2 font-semibold">{item.name}</h2>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex gap-[3px]">
                     <p>Claimed By:</p>
-                    <small>{item.claimedBy}</small>
+                    <small className="text-[16px]">{item.claimedBy}</small>
                   </div>
                 </div>
               </div>
