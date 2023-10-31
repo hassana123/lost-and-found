@@ -49,7 +49,7 @@ const DashboardLayout = ({ children }) => {
         {user.user.profilePicture ? (
           <NavLink to="/profile">
             <img
-              className="w-[60px]  mx-auto h-[45px] border border-[2px] rounded-[100%]"
+              className="w-[55px]  mx-auto h-[45px] border border-[2px] rounded-[100%]"
               src={user.user.profilePicture}
               alt=""
             />
