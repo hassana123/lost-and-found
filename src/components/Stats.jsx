@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { collection, query, getDocs } from "firebase/firestore";
 import { firestore } from "../firebase";
@@ -85,7 +86,7 @@ function Stats() {
   const totalItemsPercentage = 100;
 
   return (
-    <div className="bg-white shadow-xl md:w-[50%] w-[90%] text-center mx-auto ">
+    <div className="bg-white shadow-lg shadow-slate-300 w-[90%] text-center mx-auto ">
       {loading ? (
         <div className="text-center p-4 text-black">
           <div className="loader"></div>
@@ -99,13 +100,14 @@ function Stats() {
           <p className="bg-[#EBEBEB] w-[40%] mx-auto p-2 rounded-lg">
             Last 30 Days
           </p>
-          <div className="md:h-[30vh] w-[70%] mx-auto">
+          {/* graph for items */}
+          <div className="w-[50%] md:w-[35%] mx-auto">
             <canvas height={200} id="statisticsChart"></canvas>
           </div>
           {/* Adjusted the height */}
           <h3 className="my-5">Very Good</h3>
           {/* Claimed Items Progress Bar */}
-          <div className="w-[80%] md:w-[90%] mx-auto  mb-5 text-left">
+          <div className="w-[80%] md:w-[90%] mx-auto grid gap-4  mb-5 text-left">
             <div className="">
               <span className="bar-label">Claimed Items</span>
               <div className=" rounded-xl w-[100%] bg-[#75757533]  text-white">

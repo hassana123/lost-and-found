@@ -38,7 +38,7 @@ function LostItems() {
         <h1 className="text-2xl font-semibold mb-10  text-secondary">
           Lost Items
         </h1>
-
+      
         {loading ? (
           <p className="loader">Loading...</p>
         ) : (
@@ -66,6 +66,7 @@ function LostItems() {
                         Location: {item.location}
                       </p>
                     </div>
+
                   </div>
                 </div>
               </NavLink>

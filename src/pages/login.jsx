@@ -75,8 +75,10 @@ function Login() {
             )}
 
             {/* Email Input */}
-            <fieldset className="border border-border p-1 my-5 rounded-lg">
-              <legend className="block text-legend p-5">Email</legend>
+
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Email</legend>
+
               <div className="mb-4">
                 <input
                   type="email"
@@ -90,8 +92,9 @@ function Login() {
             </fieldset>
 
             {/* Password Input */}
-            <fieldset className="border border-border p-1 my-5 rounded-lg">
-              <legend className="block text-legend p-5">Password</legend>
+            <fieldset className="border border-border p-1 my-4 rounded-lg">
+              <legend className="block text-legend p-2">Password</legend>
+
               <div className="mb-4">
                 <input
                   type="password"
@@ -107,7 +110,7 @@ function Login() {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full py-4 bg-primary text-white rounded-md py-2"
+              className="w-full p-2 bg-primary text-white rounded-md py-2"
             >
               {loading ? "loging in please wait" : "login"}
             </button>
