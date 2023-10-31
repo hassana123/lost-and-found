@@ -3,10 +3,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logoutUser } from "../auth";
 import vector from "../assests/icons/vector.svg";
 import { AiOutlineSearch } from "react-icons/ai";
+import { getUser } from "../auth";
 import { HiOutlineUser, HiOutlineMenu } from "react-icons/hi";
 const DashboardLayout = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-
+  const user = getUser();
   const navigate = useNavigate();
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -18,7 +19,7 @@ const DashboardLayout = ({ children }) => {
   };
   return (
     <main className="relative">
-      <div className="bg-white p-4 flex items-center justify-between">
+      <div className="bg-white p-4 flex items-center  justify-between">
         <div className="flex items-center">
           <h1>Logo</h1>
 
@@ -45,17 +46,28 @@ const DashboardLayout = ({ children }) => {
           </div>
         </div>
 
-        <NavLink to="/profile" className="text-[#FB7E13]">
-          <HiOutlineUser size={30} />
-        </NavLink>
+        {user.user.profilePicture ? (
+          <NavLink to="/profile">
+            <img
+              className="w-[60px]  mx-auto h-[45px] border border-[2px] rounded-[100%]"
+              src={user.user.profilePicture}
+              alt=""
+            />
+          </NavLink>
+        ) : (
+          <NavLink to="/profile" className="text-[#FB7E13]">
+            <HiOutlineUser size={30} />
+          </NavLink>
+        )}
       </div>
+      <hr />
 
       {/* mobile Side Navigation */}
       <div className="flex">
         <div
           className={`${
             isSidebarOpen ? "left-0 md:left-0 " : "left-[-80%] md:left-0"
-          } block md:hidden my-2 mx-2 bg-white w-[40%] h-[60vh] rounded-xl  font-400 text-[16px] absolute transition-transform ease-in-out duration-300`}
+          } block md:hidden my-2 mx-2 bg-white w-[65%] h-[60vh] rounded-xl  font-400 text-[16px] absolute transition-transform ease-in-out duration-300`}
         >
           <ul>
             <li className="mb-2">
@@ -128,7 +140,6 @@ const DashboardLayout = ({ children }) => {
         <div
           className={`mt-5 mb-10 hidden md:block bg-white md:w-[30%] font-400 text-[16px] text-[#5F5F5FC2] h-screen absolute md:relative transition-transform ease-in-out duration-300`}
         >
-          <hr />
           <ul className="mt-10">
             <li className="mb-2">
               <NavLink

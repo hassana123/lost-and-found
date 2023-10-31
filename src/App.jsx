@@ -9,6 +9,7 @@ import LostItems from "./pages/lostItems";
 import About from "./pages/about";
 import ReportLostItem from "./pages/reportLostItem";
 import LostItemDetails from "./pages/details";
+import ProfilePage from "./pages/profilePage";
 import ClaimedItems from "./pages/claimedItems";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
@@ -17,7 +18,7 @@ function App() {
   // localStorage.removeItem("userId");
   return (
     <BrowserRouter>
-      <div className="bg-white font-montserrat text-capitalize">
+      <div className="bg-white font-montserrat capitalize">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
@@ -29,6 +30,7 @@ function App() {
           <Route path="/details/:id" element={<LostItemDetails />} />
           <Route path="/claimed" element={<ClaimedItems />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
     </BrowserRouter>

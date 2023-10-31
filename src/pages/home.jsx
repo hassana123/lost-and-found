@@ -16,7 +16,7 @@ function home() {
       <section className="block md:flex justify-center gap-5 w-[90%] mx-auto items-center">
         <div className="text-center md:text-left">
           <h1 className="text-[#2F327D] text-4xl font-bold mt-20 ">
-            Lost and Found Hub:
+            RECLAIM HUB:{" "}
           </h1>
           <p className="my-5 ">
             Your One-Stop Solution for Reuniting with Lost Items

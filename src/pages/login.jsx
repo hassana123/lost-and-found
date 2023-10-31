@@ -41,7 +41,7 @@ function Login() {
       if (user.exists()) {
         const userData = user.data();
         // Store user data in local storage
-        loginUser(userData, userId); // Pass user data to the loginUser function
+        loginUser(userData, userId, userDoc); // Pass user data to the loginUser function
       } else {
         console.error("User document not found in Firestore.");
       }

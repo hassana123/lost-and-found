@@ -15,7 +15,9 @@ import { getUser } from "../auth";
 import icon from "../assests/icons/location.svg";
 import calender from "../assests/icons/calender.svg";
 import clock from "../assests/icons/clock.svg";
-
+import rec from "../assests/icons/rec.svg";
+import { FaCheckCircle } from "react-icons/fa";
+import connect from "../assests/images/connect.png";
 function LostItemDetails() {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,12 +66,24 @@ function LostItemDetails() {
           setTimeout(() => {
             let message = `Hello ${itemData.seekerName}`;
             let phone = itemData.seekerPhone;
-            setShowConnectingMessage(false);
 
-            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+            // Check if the phone number starts with '0' and remove it
+            if (phone.charAt(0) === "0") {
+              phone = phone.substring(1);
+            }
 
-            window.open(whatsappURL, "_blank");
-          }, 15000);
+            // Ensure the phone number has 10 digits
+            if (phone.length === 10) {
+              setShowConnectingMessage(false);
+
+              const whatsappURL = `https://wa.me/234${phone}?text=${message}`;
+
+              window.open(whatsappURL, "_blank");
+            } else {
+              // Handle invalid phone number (e.g., show an error message)
+              console.log("Invalid phone number");
+            }
+          }, 7000);
         }
       }
     } catch (error) {
@@ -103,17 +117,25 @@ function LostItemDetails() {
         {loading ? (
           <p>Loading...</p>
         ) : item ? (
-          <div className=" w-[70%]">
+          <div className=" md:w-[70%]  w-[90]">
             <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
             <p className="mb-4 flex gap-2">
               <img src={icon} alt="" /> {item.location}
             </p>
             <p>
               <img src="" alt="" />
-              {item.claimed ? "claimed Item " : "unclaimed item"}
+              {item.claimed ? (
+                <small className="flex gap-2 ">
+                  <FaCheckCircle size={20} color="#0a032a" /> Claimed
+                </small>
+              ) : (
+                <small className="flex gap-2">
+                  <img src={rec} alt="" /> unclaimed
+                </small>
+              )}
             </p>
             <img
-              className="w-[50%] h-[30vh] my-5"
+              className="md:w-[60%] w-[100%] h-[30vh] my-5"
               src={item.image}
               alt={item.name}
             />
@@ -142,9 +164,9 @@ function LostItemDetails() {
               {item.claimed ? "Item Claimed" : "Claim Item"}
             </button>
             {showConnectingMessage ? (
-              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 p-4 bg-white rounded-lg shadow-lg">
+              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 py-10 px-5 bg-white rounded-lg shadow-xl md:w-[30%] w-[70%]">
                 <div className="text-center">
-                  <img src="" alt="" />
+                  <img className="mx-auto " src={connect} alt="" />
                   <p className="py-2">Connecting to WhatsApp...</p>
                 </div>
               </div>

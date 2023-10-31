@@ -15,9 +15,9 @@ const Navbar = () => {
             <div className=" sm:flex sm:items-center">
               <Link
                 to="/"
-                className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
+                className="text-primary font-bold text-sm hover:text-purple-600 mr-4"
               >
-                Logo
+                ReclaimHub
               </Link>
               {/*mobile nav*/}
             </div>

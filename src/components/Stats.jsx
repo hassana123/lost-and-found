@@ -85,25 +85,27 @@ function Stats() {
   const totalItemsPercentage = 100;
 
   return (
-    <div className="bg-white shadow-xl w-[50%] text-center mx-auto float-right">
+    <div className="bg-white shadow-xl md:w-[50%] w-[90%] text-center mx-auto ">
       {loading ? (
         <div className="text-center p-4 text-black">
           <div className="loader"></div>
           <p>Loading...</p>
         </div>
       ) : (
-        <div className="container py-5 px- 2 border-2 border-[#14213D33] rounded-xl">
+        <div className="py-1 px- 2 border-2 border-[#14213D33] rounded-xl">
           <h5 className="text-xl font-semibold my-5">
             Claimed Item Statistics
           </h5>
-          <p className="bg-[#EBEBEB] w-[60%] mx-auto p-2 rounded-lg">
+          <p className="bg-[#EBEBEB] w-[40%] mx-auto p-2 rounded-lg">
             Last 30 Days
           </p>
-          <canvas height={400} id="statisticsChart"></canvas>
+          <div className="md:h-[30vh] w-[70%] mx-auto">
+            <canvas height={200} id="statisticsChart"></canvas>
+          </div>
           {/* Adjusted the height */}
           <h3 className="my-5">Very Good</h3>
           {/* Claimed Items Progress Bar */}
-          <div className="w-[90%] mx-auto text-left">
+          <div className="w-[80%] md:w-[90%] mx-auto  mb-5 text-left">
             <div className="">
               <span className="bar-label">Claimed Items</span>
               <div className=" rounded-xl w-[100%] bg-[#75757533]  text-white">
