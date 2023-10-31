@@ -5,6 +5,8 @@ import { firestore } from "../firebase";
 import requireAuth from "../requireAuth";
 import { getUser } from "../auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { NavLink } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 function ReportLostItem() {
   const [itemName, setItemName] = useState("");
   const [locationFound, setLocationFound] = useState("");
@@ -83,6 +85,9 @@ function ReportLostItem() {
 
   return (
     <DashboardLayout>
+      <NavLink className="float-right my-5" to="/dashboard">
+        <FaArrowLeft />
+      </NavLink>
       {formSubmitted ? ( // Conditional rendering based on form submission status
         <section className="text-center mt-20">
           <p className="text-[#2F327D] text-2xl font-bold mb-5">
@@ -98,12 +103,12 @@ function ReportLostItem() {
             >
               Make Another Report
             </button>
-            <button
+            <NavLink
+              to="/dashboard"
               className="bg-[#0A032A] text-white rounded-md py-2 px-4 hover:bg-[#508989] focus:outline-none"
-              onClick={() => navigate("/dashboard")} // Handle going to the homepage
             >
-              Go to Homepage
-            </button>
+              Go to Dashboard
+            </NavLink>
           </div>
         </section>
       ) : (

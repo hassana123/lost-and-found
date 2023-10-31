@@ -10,7 +10,7 @@ const dashboard = () => {
   const user = getUser();
   return (
     <DashboardLayout>
-      <div className="md:w-[15%] w-[30%] mx-auto float-right">
+      <div className="md:w-[15%] w-[25%] mx-auto float-right">
         <NavLink
           className="bg-primary text-center text-white hover:bg-[#FB7E13]  transition-all hover:bg-[#FB7E13] transition-transform transform hover:scale-105  flex justify-center gap-[2px] rounded-xl w-full py-4 my-5"
           to="/report"
@@ -20,12 +20,12 @@ const dashboard = () => {
       </div>
       <div className="my-10 mx-5">
         <h1 className="my-2">
-          Hey there,
-          <span className="text-primary font-bold">
+          Hey there, &nbsp;
+          <span className="text-primary font-bold text-lg">
             {user.user.userName ? user.user.userName : user.user.name}
           </span>
         </h1>
-        <p>Welcome to Reclaim Hub,</p>
+        <p className="font-semibold text-gray-800">Welcome to Reclaim Hub,</p>
         <small>Your One-Stop Solution for Reuniting with Lost Items</small>
       </div>
       <Stats />

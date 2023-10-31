@@ -11,6 +11,7 @@ function Login() {
   // State variables for email, password, and error message
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -18,10 +19,12 @@ function Login() {
   // Function to handle user login
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent the default form submission
-
+    setLoading(true);
     // Basic form validation
     if (!email || !password) {
+      setLoading(false);
       setError("Email and password are required.");
+
       return;
     }
 
@@ -46,6 +49,7 @@ function Login() {
         console.error("User document not found in Firestore.");
       }
       // redirect the user
+      setLoading(false);
       navigate("/dashboard");
     } catch (error) {
       setError("Invalid email or password. Please try again.");
@@ -71,7 +75,7 @@ function Login() {
             )}
 
             {/* Email Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
+            <fieldset className="border border-border p-1 my-5 rounded-lg">
               <legend className="block text-legend p-5">Email</legend>
               <div className="mb-4">
                 <input
@@ -86,7 +90,7 @@ function Login() {
             </fieldset>
 
             {/* Password Input */}
-            <fieldset className="border border-border p-1 my-10 rounded-lg">
+            <fieldset className="border border-border p-1 my-5 rounded-lg">
               <legend className="block text-legend p-5">Password</legend>
               <div className="mb-4">
                 <input
@@ -105,7 +109,7 @@ function Login() {
               type="submit"
               className="w-full py-4 bg-primary text-white rounded-md py-2"
             >
-              Login
+              {loading ? "loging in please wait" : "login"}
             </button>
           </form>
 

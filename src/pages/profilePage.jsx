@@ -9,6 +9,8 @@ import { getUser } from "../auth";
 import { HiOutlineUser } from "react-icons/hi";
 import { loginUser } from "../auth";
 import { auth } from "../firebase";
+import { FaArrowLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 function profilePage() {
   const [name, setName] = useState("");
@@ -20,68 +22,71 @@ function profilePage() {
 
   const user = getUser();
 
-  const changeEmail = () => {
-    const currUser = auth.currentUser; // Get the current user
-    // Update the email in Firebase Authentication
-    updateEmail(currUser, email)
-      .then(() => {
-        console.log("Email updated successfully in Firebase Authentication");
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error(error);
-      });
-  };
+  // const changeEmail = () => {
+  //   const currUser = auth.currentUser; // Get the current user
+  //   // Update the email in Firebase Authentication
+  //   updateEmail(currUser, email)
+  //     .then(() => {
+  //       console.log("Email updated successfully in Firebase Authentication");
+  //     })
+  //     .catch((error) => {
+  //       // Handle errors here
+  //       console.error(error);
+  //     });
+  // };
 
   const handleProfileUpdate = async (e) => {
     setLoading(true);
     e.preventDefault();
 
-    if (!name || !phone || !userName) {
-      console.log("All fields are required.");
+    if (!user) {
+      console.log("User not found. Please log in.");
       return;
     }
 
+    const userDocRef = doc(firestore, "users", user.userId);
+    const updatedUserData = {};
+
+    if (name) {
+      updatedUserData.name = name;
+    }
+
+    if (userName) {
+      updatedUserData.userName = userName;
+    }
+
+    if (phone) {
+      updatedUserData.phone = phone;
+    }
+
+    // Check if a new profile picture is selected
+    if (profilePicture) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `profilePictures/${user.userId}`);
+
+      // Upload the new profile picture
+      await uploadBytes(storageRef, profilePicture);
+
+      // Get the download URL of the uploaded profile picture
+      const downloadURL = await getDownloadURL(storageRef);
+
+      // Add the profile picture URL to the updated user data
+      updatedUserData.profilePicture = downloadURL;
+    }
+
     try {
-      if (user) {
-        const userDocRef = doc(firestore, "users", user.userId);
-        const updatedUserData = {
-          name: name,
-          userName: userName,
-          phone: phone,
-        };
-        const storage = getStorage();
-        // Check if a new profile picture is selected
-        if (profilePicture) {
-          // Create a reference to the user's profile picture in Firebase Storage
-          const storageRef = ref(storage, `profilePictures/${user.userId}`);
-
-          // Upload the new profile picture
-          await uploadBytes(storageRef, profilePicture);
-
-          // Get the download URL of the uploaded profile picture
-          const downloadURL = await getDownloadURL(storageRef);
-
-          // Add the profile picture URL to the updated user data
-          updatedUserData.profilePicture = downloadURL;
-        }
-
-        // Update the user data in Firestore
-        await setDoc(userDocRef, updatedUserData, { merge: true });
-        //changeEmail();
-        loginUser(updatedUserData, user.userId, user.userAuth);
-        console.log("updated");
-        setLoading(false);
-        // Clear the form fields
-        setName("");
-        setPhone("");
-        setUserName("");
-        setProfilePicture(null);
-        // Redirect to the user's profile page or a success page
-        setOpen(true);
-      } else {
-        console.log("User not found. Please log in.");
-      }
+      // Update the user data in Firestore
+      await setDoc(userDocRef, updatedUserData, { merge: true });
+      loginUser(updatedUserData, user.userId, user.userAuth);
+      console.log("Updated");
+      setLoading(false);
+      // Clear the form fields
+      setName("");
+      setPhone("");
+      setUserName("");
+      setProfilePicture(null);
+      // Redirect to the user's profile page or a success page
+      setOpen(true);
     } catch (error) {
       console.log("Error updating the user profile. Please try again.");
       console.log("Error updating profile:", error);
@@ -90,6 +95,9 @@ function profilePage() {
 
   return (
     <DashboardLayout>
+      <NavLink className="float-right my-5" to="/dashboard">
+        <FaArrowLeft />
+      </NavLink>
       {open ? (
         <section className="max-w-md mx-auto mt-8 p-4 bg-white rounded-lg shadow-xl">
           <h1 className="text-2xl font-semibold text-primary text-center mb-4">
@@ -129,7 +137,7 @@ function profilePage() {
             onClick={() => setOpen(false)}
             className="bg-primary text-center text-white hover:bg-[#FB7E13]  transition-all hover:bg-[#FB7E13] transition-transform transform hover:scale-105  flex justify-center gap-[2px] rounded-xl w-full py-4 my-5"
           >
-            Upadate profile
+            Update profile
           </button>
         </section>
       ) : (
