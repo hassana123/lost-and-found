@@ -150,8 +150,8 @@ function Signup() {
 
   return (
     <HomeLayout>
-      <div className="flex items-center justify-center my-10 min-h-screen">
-        <div className="w-4/6 p-4 bg-white rounded-lg shadow-lg">
+      <div className="w-[90%] md:w-[60%] mx-auto my-10 min-h-screen">
+        <div className="p-4 w-full bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
             Sign Up
           </h2>
@@ -165,9 +165,9 @@ function Signup() {
 
 
             <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
-              <legend className="block text-legend p-5">Name</legend>
+              <legend className="block text-legend p-2">Name</legend>
 
-              <div className="mb-4">
+              <div className="">
                 <input
                   type="text"
                   id="name"
@@ -193,9 +193,9 @@ function Signup() {
             {/* Phone Input */}
 
             <fieldset className="border border-border px-1 h-[15vh] my-2 rounded-lg">
-              <legend className="block text-legend p-5">Phone Number</legend>
+              <legend className="block text-legend p-2">Phone Number</legend>
 
-              <div className="mb-4">
+              <div className="">
                 <input
                   type="tel"
                   id="phone"
@@ -223,9 +223,9 @@ function Signup() {
             {/* Email Input */}
 
             <fieldset className="border border-border px-1 h-[15vh] my-2 rounded-lg">
-              <legend className="block text-legend p-5">Email</legend>
+              <legend className="block text-legend p-2">Email</legend>
 
-              <div className="mb-4">
+              <div className="">
                 <input
                   type="email"
                   id="email"
@@ -251,9 +251,9 @@ function Signup() {
             {/* Password Input */}
 
             <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
-              <legend className="block text-legend p-5">Password</legend>
+              <legend className="block text-legend p-2">Password</legend>
 
-              <div className="mb-4">
+              <div className="">
                 <input
                   type="password"
                   id="password"
@@ -279,11 +279,11 @@ function Signup() {
             {/* Confirm Password Input */}
 
             <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
-              <legend className="block text-legend p-5">
+              <legend className="block text-legend p-2">
 
                 Confirm Password
               </legend>
-              <div className="mb-4">
+              <div className="">
                 <input
                   type="password"
                   id="confirmPassword"
