@@ -63,7 +63,7 @@ function Login() {
 
   return (
     <HomeLayout>
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="w-[90%] md:w-[40%] mx-auto my-10">
         <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-4 text-secondary">
             Login
