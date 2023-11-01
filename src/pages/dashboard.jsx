@@ -32,7 +32,6 @@ const dashboard = () => {
         </div>
       </div>
       <Stats />
-      <LostItems />
     </DashboardLayout>
   );
 };
