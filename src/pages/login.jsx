@@ -83,7 +83,7 @@ function Login() {
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-5 border-none outline-none"
+                  className="w-full px-2 border-none outline-none"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +99,7 @@ function Login() {
                 <input
                   type="password"
                   id="password"
-                  className="w-full px-5 border-none outline-none"
+                  className="w-full px-2 border-none outline-none"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -110,9 +110,9 @@ function Login() {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full p-2 bg-primary text-white rounded-md py-2"
+              className="w-full py-4 mt-5 bg-primary text-white rounded-md "
             >
-              {loading ? "loging in please wait" : "login"}
+              {loading ? "Loging in please wait" : "Login"}
             </button>
           </form>
 

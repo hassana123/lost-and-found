@@ -43,7 +43,9 @@ function home() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 justify-center gap-5 w-[90%] mx-auto ">
           <div className="W-[90%]">
             <img src={mainfeature1} className="w-full" alt="" />
-            <h4 className="text-center">Report a Lost Item</h4>
+            <h1 className="text-center text-lg font-bold">
+              Report a Lost Item
+            </h1>
             <p className=" w-[80%] mx-auto text-center">
               It's easy! Provide us with the details by filling out a simple
               form, and we'll do our best to help you find it.
@@ -51,7 +53,10 @@ function home() {
           </div>
           <div className="W-[90%]">
             <img src={mainfeature2} className="w-full" alt="" />
-            <h4 className="text-center">Finding Lost Items</h4>
+            <h1 className="text-center text-lg font-bold">
+              Finding Lost Items
+            </h1>
+
             <p className=" w-[80%] mx-auto text-center">
               Browse through items that have been found and are waiting to be
               reclaimed – your lost item could be there, waiting for you!"

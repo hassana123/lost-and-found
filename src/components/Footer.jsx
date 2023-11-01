@@ -22,7 +22,7 @@ const Footer = () => {
             <div className="block md:flex items-center gap-3">
               <input
                 type="text"
-                className=" bg-transparent border-2 px-4 py-2 border-solid border-white rounded-md"
+                className=" bg-transparent border-2 px-4 py-2 border-solid my-5 border-white rounded-md"
                 placeholder="Your Email"
               />
               <button className="bg-white text-black p-3 rounded-md">

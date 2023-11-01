@@ -150,12 +150,12 @@ function Signup() {
 
   return (
     <HomeLayout>
-      <div className="w-[90%] md:w-[60%] mx-auto my-10 min-h-screen">
+      <div className="w-[90%] md:w-[45%] mx-auto my-10 h-screen">
         <div className="p-4 w-full bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
             Sign Up
           </h2>
-          <form onSubmit={handleSignup} className="grid md:grid-cols-2 gap-8">
+          <form onSubmit={handleSignup} className="">
             {/* Display error message if there's an error */}
             {error && (
               <div className="mb-2 text-red-600 text-center">{error}</div>
@@ -163,20 +163,15 @@ function Signup() {
 
             {/* Name Input */}
 
-
-            <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
+            <fieldset className="border border-border px-2 h-[13vh] my-2 rounded-lg">
               <legend className="block text-legend p-2">Name</legend>
 
               <div className="">
                 <input
                   type="text"
                   id="name"
-
-                  className="w-full px-5 border-none outline-none"
+                  className="w-full px-3 py-2 border-none outline-none"
                   placeholder="e.g. John Doe"
-
-                
-
                   value={name}
                   onChange={(e) => {
                     setName(e.target.value);
@@ -192,19 +187,15 @@ function Signup() {
 
             {/* Phone Input */}
 
-            <fieldset className="border border-border px-1 h-[15vh] my-2 rounded-lg">
+            <fieldset className="border border-border  px-2 h-[13vh] my-2 rounded-lg">
               <legend className="block text-legend p-2">Phone Number</legend>
 
               <div className="">
                 <input
                   type="tel"
                   id="phone"
-
-                  className="w-full px-5 border-none outline-none"
+                  className="w-full px-3 py-2 border-none outline-none"
                   placeholder="e.g. 08122990011"
-
-               
-
                   value={phone}
                   onChange={(e) => {
                     setPhone(e.target.value);
@@ -229,10 +220,8 @@ function Signup() {
                 <input
                   type="email"
                   id="email"
-
-                  className="w-full px-5 border-none outline-none"
+                  className="w-full px-3 py-2 border-none outline-none"
                   placeholder="e.g. email@gmail.com"
-
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -250,14 +239,14 @@ function Signup() {
 
             {/* Password Input */}
 
-            <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
+            <fieldset className="border border-border px-2 h-[13vh] my-2 rounded-lg">
               <legend className="block text-legend p-2">Password</legend>
 
               <div className="">
                 <input
                   type="password"
                   id="password"
-                  className={`w-full px-5 border-none outline-none ${
+                  className={`w-full px-3 py-2 border-none outline-none ${
                     passwordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
@@ -278,16 +267,15 @@ function Signup() {
 
             {/* Confirm Password Input */}
 
-            <fieldset className="border border-border px-1 h-[15vh] my-5 rounded-lg">
+            <fieldset className="border border-border  px-2 h-[13vh] my-2 rounded-lg">
               <legend className="block text-legend p-2">
-
                 Confirm Password
               </legend>
               <div className="">
                 <input
                   type="password"
                   id="confirmPassword"
-                  className={`w-full px-5 border-none outline-none ${
+                  className={`w-full px-3 py-2 border-none outline-none ${
                     confirmPasswordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
@@ -312,11 +300,10 @@ function Signup() {
               type="submit"
               className="w-full py-4 my-5 bg-primary text-white rounded-md"
             >
-              {loading ? "signing up" : "sign up"}
+              {loading ? "Signing up" : "Sign up"}
             </button>
-
           </form>
-        
+
           <div className="text-center mt-4 text-secondary">
             <small>
               Already have an Account

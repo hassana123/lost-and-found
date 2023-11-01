@@ -207,7 +207,7 @@ const DashboardLayout = ({ children }) => {
           </ul>
         </div>
         {/* Main Content */}
-        <div className="bg-[#FFFFFF] p-3  w-[100%]">{children}</div>
+        <div className="bg-[#FFFFFF] p-1 w-[100%]">{children}</div>
       </div>
     </main>
   );
