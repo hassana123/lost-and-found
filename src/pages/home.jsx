@@ -34,7 +34,7 @@ function home() {
             </Link>
           </div>
         </div>
-        <img src={mainpic} className="md:w-[40%]" alt="" />
+        <img src={mainpic} className="md:w-[40%] my-5" alt="" />
       </section>
       <section>
         <h1 className="text-[#2F327D] text-2xl mb-5 text-center font-bold mt-20 ">
