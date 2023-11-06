@@ -18,7 +18,7 @@ function profilePage() {
   const [phone, setPhone] = useState("");
   //const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState("");
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -53,12 +53,12 @@ function profilePage() {
 
   const handleUserNameChange = (e) => {
     const userNameValue = e.target.value;
-    const userNameRegex = /^[A-Za-z0-9_]{1,9}$/;
+    const userNameRegex = /^[A-Za-z0-9_]{1,12}$/;
 
     if (userNameRegex.test(userNameValue)) {
       setUserNameError("");
     } else {
-      setUserNameError("Username must be up to 9 characters with no spaces");
+      setUserNameError("Username must be up to 12 characters with no spaces");
     }
 
     setUserName(userNameValue);
@@ -67,6 +67,14 @@ function profilePage() {
   const { user } = getUser();
   const { userId } = getUser();
   const { userAuth } = getUser();
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePicture(file);
+    }
+  };
+  console.log(profilePicture);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,8 +101,19 @@ function profilePage() {
     } else {
       updatedUserData.phone = user.phone;
     }
+
     if (profilePicture) {
-      updatedUserData.profilePicture = profilePicture;
+      const storage = getStorage();
+      const storageRef = ref(storage, `profilePictures/${userId}`);
+      try {
+        const snapshot = await uploadBytes(storageRef, profilePicture);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        updatedUserData.profilePicture = downloadURL;
+        console.log("updated");
+      } catch (error) {
+        console.log("Error uploading image", error);
+      }
     }
     try {
       await setDoc(userDocRef, updatedUserData, { merge: true });
@@ -110,28 +129,7 @@ function profilePage() {
       console.log("Error updating profile:", error);
     }
   };
-  const handleImage = async (e) => {
-    e.preventDefault();
-    if (profilePicture) {
-      const storage = getStorage();
-      const storageRef = ref(storage, `profilePictures/${userId}`);
-      await uploadBytes(storageRef, profilePicture);
-      const downloadURL = await getDownloadURL(storageRef);
-      setProfilePicture(downloadURL);
-    }
-    try {
-      const userDocRef = doc(firestore, "users", userId);
-      await setDoc(
-        userDocRef,
-        { profilePicture: profilePicture },
-        { merge: true }
-      );
 
-      console.log("uploaded");
-    } catch (error) {
-      console.log("error uploading image", error);
-    }
-  };
   console.log(user);
   return (
     <DashboardLayout>
@@ -140,17 +138,23 @@ function profilePage() {
       </NavLink>
       <section className="md:flex  my-10">
         <div>
-          <img src={image} alt="" className="my-10" />
-          <div className="flex m-2">
-            <input className="my-2" type="file" accept="image/*" />
-            <button
-              onClick={handleImage}
-              type="submit"
-              className="w-[30%] block  text-center border border-primary  text-primary  transition-all hover:bg-[#FB7E13] transform hover:scale-105 rounded-xl py-2"
-            >
-              Upload
-            </button>
-          </div>
+          {user.profilePicture ? (
+            <img src={user.profilePicture} alt="" className="my-10 w-[50%]" />
+          ) : (
+            <img src={image} alt="" className="my-10 w-[50%]" />
+          )}
+          {open ? (
+            <div className="m-2">
+              <input
+                onChange={handleImageUpload}
+                className="my-2"
+                type="file"
+                accept="image/*"
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         {open ? (
           <form onSubmit={handleSubmit}>
