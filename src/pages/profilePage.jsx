@@ -19,7 +19,7 @@ function profilePage() {
   //const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [nameError, setNameError] = useState("");
