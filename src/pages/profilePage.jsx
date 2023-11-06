@@ -74,7 +74,6 @@ function profilePage() {
       setProfilePicture(file);
     }
   };
-  console.log(profilePicture);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -130,7 +129,6 @@ function profilePage() {
     }
   };
 
-  console.log(user);
   return (
     <DashboardLayout>
       <NavLink className="float-right my-5" to="/dashboard">
