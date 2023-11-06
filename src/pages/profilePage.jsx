@@ -74,9 +74,8 @@ function profilePage() {
       console.log("User not found. Please log in.");
       return;
     }
-
-    const userDocRef = doc(firestore, "users", userId);
     const updatedUserData = {};
+    const userDocRef = doc(firestore, "users", userId);
 
     if (name !== "") {
       updatedUserData.name = name;
@@ -94,7 +93,9 @@ function profilePage() {
     } else {
       updatedUserData.phone = user.phone;
     }
-    //updatedUserData.email = user.email;
+    if (profilePicture) {
+      updatedUserData.profilePicture = profilePicture;
+    }
     try {
       await setDoc(userDocRef, updatedUserData, { merge: true });
       loginUser(updatedUserData, userId, userAuth);
@@ -111,7 +112,27 @@ function profilePage() {
   };
   const handleImage = async (e) => {
     e.preventDefault();
+    if (profilePicture) {
+      const storage = getStorage();
+      const storageRef = ref(storage, `profilePictures/${userId}`);
+      await uploadBytes(storageRef, profilePicture);
+      const downloadURL = await getDownloadURL(storageRef);
+      setProfilePicture(downloadURL);
+    }
+    try {
+      const userDocRef = doc(firestore, "users", userId);
+      await setDoc(
+        userDocRef,
+        { profilePicture: profilePicture },
+        { merge: true }
+      );
+
+      console.log("uploaded");
+    } catch (error) {
+      console.log("error uploading image", error);
+    }
   };
+  console.log(user);
   return (
     <DashboardLayout>
       <NavLink className="float-right my-5" to="/dashboard">
@@ -120,12 +141,16 @@ function profilePage() {
       <section className="md:flex  my-10">
         <div>
           <img src={image} alt="" className="my-10" />
-          <form className="flex gap-2 m-2">
-            <input className="w-[29%] my-2" type="file" accept="image/*" />
-            <button className="w-[30%] block  text-center border border-primary  text-primary  transition-all hover:bg-[#FB7E13] transform hover:scale-105 rounded-xl py-2">
+          <div className="flex m-2">
+            <input className="my-2" type="file" accept="image/*" />
+            <button
+              onClick={handleImage}
+              type="submit"
+              className="w-[30%] block  text-center border border-primary  text-primary  transition-all hover:bg-[#FB7E13] transform hover:scale-105 rounded-xl py-2"
+            >
               Upload
             </button>
-          </form>
+          </div>
         </div>
         {open ? (
           <form onSubmit={handleSubmit}>
@@ -188,7 +213,7 @@ function profilePage() {
             </div>
           </form>
         ) : (
-          <div>
+          <div className="m-5">
             <div className="my-3 text-secondary">
               <h3 className="font-bold my-1">Name</h3>
               <p>{user.name}</p>
