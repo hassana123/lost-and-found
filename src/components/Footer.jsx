@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="bg-[#060218] text-white py-5  mt-12">
         <div className="block w-[90%]  mx-auto md:flex justify-between mb-4">
           <div>
-            <h2 className="font-bold mb-10">Lost&Found Hub</h2>
+            <h2 className="font-bold mb-10">ReclaimHub</h2>
             <ul className="grid gap-4">
               <li>About us</li>
               <li>Investors</li>

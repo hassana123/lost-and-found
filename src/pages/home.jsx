@@ -15,7 +15,7 @@ function home() {
       <section className="block md:flex justify-center gap-5 w-[90%] mx-auto items-center">
         <div className="text-center md:text-left">
           <h1 className="text-[#2F327D] text-4xl font-bold mt-20 ">
-            RECLAIM HUB:{" "}
+            RECLAIM HUB:
           </h1>
           <p className="my-5 ">
             Your One-Stop Solution for Reuniting with Lost Items
@@ -27,7 +27,6 @@ function home() {
           </p>
           <div className="flex items-center gap-4 justify-center md:justify-normal">
             <Link to="/register">
-              {" "}
               <button className="px-8 py-2 rounded-md shadow-sm bg-[#0A032A]  shadow-slate-400  text-white just">
                 Get Started
               </button>

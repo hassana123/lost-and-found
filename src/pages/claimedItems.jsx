@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import requireAuth from "../requireAuth";
 import DashboardLayout from "../components/DashboardLayout";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { FaArrowLeft } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-function claimedItems() {
+
+function ClaimedItems() {
   const [claimedItems, setClaimedItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,13 +14,18 @@ function claimedItems() {
     const fetchClaimedItems = async () => {
       try {
         const claimedItemsCollection = collection(firestore, "claimedItems");
-        const q = query(claimedItemsCollection, orderBy("timestamp", "desc"));
+        const q = query(
+          claimedItemsCollection,
+          // Filter items where claimed is true
+          orderBy("claimedAt", "desc")
+        );
         const querySnapshot = await getDocs(q);
         const items = [];
         querySnapshot.forEach((doc) => {
           items.push({ id: doc.id, ...doc.data() });
         });
-        setClaimedItems(items);
+        const claimedItems = items.filter((item) => item.claimed === true);
+        setClaimedItems(claimedItems);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching claimed items:", error);
@@ -28,8 +34,12 @@ function claimedItems() {
     };
 
     fetchClaimedItems();
-  }, []);
-  console.log(claimedItems);
+  }, [claimedItems]);
+  function formatTimestamp(timestamp) {
+    const date = new Date(timestamp.toDate()); // Convert the Firestore timestamp to a JavaScript Date object
+    return date.toLocaleString(); // You can adjust the format as needed
+  }
+
   return (
     <DashboardLayout>
       <NavLink className="float-right my-5" to="/dashboard">
@@ -60,6 +70,12 @@ function claimedItems() {
                     <p>Claimed By:</p>
                     <small className="text-[16px]">{item.claimedBy}</small>
                   </div>
+                  <div className="flex gap-[3px]">
+                    <p>Claimed At:</p>
+                    <small className="text-[16px]">
+                      {formatTimestamp(item.claimedAt)}
+                    </small>
+                  </div>
                 </div>
               </div>
             ))}
@@ -70,4 +86,4 @@ function claimedItems() {
   );
 }
 
-export default requireAuth(claimedItems);
+export default requireAuth(ClaimedItems);

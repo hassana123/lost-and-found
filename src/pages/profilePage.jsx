@@ -107,8 +107,12 @@ function profilePage() {
       try {
         const snapshot = await uploadBytes(storageRef, profilePicture);
         const downloadURL = await getDownloadURL(snapshot.ref);
+        if (profilePicture !== "") {
+          updatedUserData.profilePicture = downloadURL;
+        } else {
+          updatedUserData.profilePicture = user.profilePicture;
+        }
 
-        updatedUserData.profilePicture = downloadURL;
         console.log("updated");
       } catch (error) {
         console.log("Error uploading image", error);
@@ -134,10 +138,14 @@ function profilePage() {
       <NavLink className="float-right my-5" to="/dashboard">
         <FaArrowLeft />
       </NavLink>
-      <section className="md:flex  my-10">
-        <div>
+      <section className="md:flex my-10">
+        <div className=" w-[30%]">
           {user.profilePicture ? (
-            <img src={user.profilePicture} alt="" className="my-10 w-[50%]" />
+            <img
+              src={user.profilePicture}
+              alt=""
+              className="my-10 mx-auto  w-[50%] md:w-[80%]"
+            />
           ) : (
             <img src={image} alt="" className="my-10 w-[50%]" />
           )}
@@ -155,7 +163,7 @@ function profilePage() {
           )}
         </div>
         {open ? (
-          <form onSubmit={handleSubmit}>
+          <form className="my-20" onSubmit={handleSubmit}>
             <div className="md:flex my-5 gap-2">
               <label className="font-semibold m-2">Name</label>
               <input
@@ -215,7 +223,7 @@ function profilePage() {
             </div>
           </form>
         ) : (
-          <div className="m-5">
+          <div className="my-10  w-[70%]">
             <div className="my-3 text-secondary">
               <h3 className="font-bold my-1">Name</h3>
               <p>{user.name}</p>

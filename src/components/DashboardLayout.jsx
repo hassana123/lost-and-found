@@ -109,6 +109,19 @@ const DashboardLayout = ({ children }) => {
             </li>
             <li>
               <NavLink
+                to="/markItem"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex gap-3 w-full p-2  border-l-[#FB7E13] border-l-2 bg-[#FFF5E5] text-[#FB7E13] font-bold my-5"
+                    : "flex gap-3 w-full my-5 p-2"
+                }
+              >
+                <img src={vector} alt="" />
+                reported Items
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/claimed"
                 className={({ isActive }) =>
                   isActive
@@ -176,6 +189,18 @@ const DashboardLayout = ({ children }) => {
                 }
               >
                 <img src={vector} alt="" /> Report Lost Item
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/markItem"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex gap-3 w-full p-2 bg-[#50898926] text-[#1C1C1CF7] font-bold my-5"
+                    : "flex gap-3 w-full my-5 p-2"
+                }
+              >
+                <img src={vector} alt="" /> Reported Items
               </NavLink>
             </li>
             <li>

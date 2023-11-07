@@ -36,6 +36,7 @@ function ReportLostItem() {
       desc: description,
       image: imageURL,
       timestamp: timestamp,
+      seekerId: userId,
       seekerName: user.user.name,
       seekerPhone: user.user.phone,
     };

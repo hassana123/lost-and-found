@@ -54,41 +54,47 @@ function Signup() {
     if (!name) {
       setNameError("Name is required.");
       nameRef.current.focus();
+      return;
     } else if (!validateName(name)) {
       setNameError("Name is not valid.");
       nameRef.current.focus();
+      return;
     }
 
     if (!phone) {
       setPhoneError("Phone number is required.");
       phoneRef.current.focus();
+      return;
     } else if (!validatePhone(phone)) {
       setPhoneError("Phone number is not valid.");
       phoneRef.current.focus();
+      return;
     }
 
     if (!email) {
       setEmailError("Email is required.");
       emailRef.current.focus();
+      return;
     } else if (!validateEmail(email)) {
       setEmailError("Email is not valid.");
       emailRef.current.focus();
+      return;
     }
 
     if (!password) {
       setPasswordError("Password is required.");
       passwordRef.current.focus();
+      return;
     } else if (!validatePassword(password)) {
       setPasswordError("Password is not valid.");
       passwordRef.current.focus();
+      return;
     }
 
-    if (!confirmPassword) {
-      setConfirmPasswordError("Confirmation is required.");
+    if (password !== confirmPassword) {
       confirmPasswordRef.current.focus();
-    } else if (password !== confirmPassword) {
       setConfirmPasswordError("Passwords do not match.");
-      confirmPasswordRef.current.focus();
+      return;
     }
 
     // Check if any field has an error
@@ -246,7 +252,7 @@ function Signup() {
                 <input
                   type="password"
                   id="password"
-                  className={`w-full px-3 py-2 border-none outline-none ${
+                  className={`w-full px-3  my-5 py-2 border-none outline-none ${
                     passwordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
@@ -275,7 +281,7 @@ function Signup() {
                 <input
                   type="password"
                   id="confirmPassword"
-                  className={`w-full px-3 py-2 border-none outline-none ${
+                  className={`w-full px-3 my-5 py-2 border-none outline-none ${
                     confirmPasswordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
