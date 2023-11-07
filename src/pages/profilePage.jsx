@@ -100,6 +100,9 @@ function profilePage() {
     } else {
       updatedUserData.phone = user.phone;
     }
+    if (profilePicture == "" || profilePicture == null) {
+      updatedUserData.profilePicture = user.profilePicture;
+    }
 
     if (profilePicture) {
       const storage = getStorage();
@@ -138,7 +141,7 @@ function profilePage() {
       <NavLink className="float-right my-5" to="/dashboard">
         <FaArrowLeft />
       </NavLink>
-      <section className="md:flex my-10">
+      <section className="md:flex my-20">
         <div className=" w-[30%]">
           {user.profilePicture ? (
             <img
@@ -153,7 +156,7 @@ function profilePage() {
             <div className="m-2">
               <input
                 onChange={handleImageUpload}
-                className="my-2"
+                className="my-2 w-[80%]"
                 type="file"
                 accept="image/*"
               />

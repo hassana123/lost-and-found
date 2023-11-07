@@ -16,6 +16,9 @@ import clock from "../assests/icons/clock.svg";
 import { FaCheckCircle } from "react-icons/fa";
 import rec from "../assests/icons/rec.svg";
 import connect from "../assests/images/connect.png";
+import { FaArrowLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
 function LostItemDetails() {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -111,7 +114,9 @@ function LostItemDetails() {
     <DashboardLayout>
       <div className="container mx-auto text-[#1C1C1C] p-4">
         <h1 className="text-2xl font-semibold mb-4">Item Details</h1>
-
+        <NavLink className="float-right " to="/dashboard">
+          <FaArrowLeft />
+        </NavLink>
         {loading ? (
           <p>Loading...</p>
         ) : item ? (
