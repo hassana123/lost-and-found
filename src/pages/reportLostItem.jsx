@@ -12,6 +12,7 @@ function ReportLostItem() {
   const [locationFound, setLocationFound] = useState("");
   const [foundDate, setFoundDate] = useState("");
   const [foundTime, setFoundTime] = useState("");
+  const [loading, setLoading] = useState(false)
   const [description, setDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -50,6 +51,7 @@ function ReportLostItem() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     // Check if an image is selected
     if (selectedImage) {
       const storage = getStorage(); // Initialize Firebase Storage
@@ -65,14 +67,17 @@ function ReportLostItem() {
         // Save the item data to Firestore with the image URL
         saveItemToFirestore(userId, downloadURL, timestamp);
         setFormSubmitted(true);
+        setLoading (false)
         console.log("Image uploaded and URL stored.");
       } catch (error) {
         console.error("Error uploading image:", error);
+        setLoading(false);
       }
     } else {
       // If no image is selected, save the item data without an image URL
       saveItemToFirestore(userId, "");
       setFormSubmitted(true);
+      setLoading(false)
     }
     setItemName("");
     setLocationFound("");
@@ -188,7 +193,7 @@ function ReportLostItem() {
               type="submit"
               className="w-full bg-primary text-white rounded-md py-2 px-4 hover:bg-[#FB7E13]"
             >
-              Report
+              {loading ? "Reporting" : "Report"}
             </button>
           </form>
         </div>
