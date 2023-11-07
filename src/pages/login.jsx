@@ -54,6 +54,7 @@ function Login() {
     } catch (error) {
       setError("Invalid email or password. Please try again.");
       console.error("Error signing in:", error);
+      setLoading (false)
     }
 
     // Clear the email and password fields after login
