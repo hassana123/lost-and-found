@@ -156,7 +156,7 @@ function Signup() {
 
   return (
     <HomeLayout>
-      <div className="w-[90%] md:w-[45%] mx-auto my-10 h-screen">
+      <div className="w-[90%] md:w-[45%] mx-auto mt-5 mb-10 h-fit-content">
         <div className="p-4 w-full bg-white rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-secondary text-center mb-4">
             Sign Up
