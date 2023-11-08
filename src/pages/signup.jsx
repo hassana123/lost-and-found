@@ -9,7 +9,7 @@ function Signup() {
   const nameRegex = /^[A-Za-z\s]+$/; // Only letters and spaces
   const phoneRegex = /^[0-9]{11}$/; // 11-digit phone number
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/; // Email format
-  const passwordRegex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.*[A-Z]).*$/;
+  const passwordRegex = /^.*$/;
 
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
