@@ -9,7 +9,7 @@ function Signup() {
   const nameRegex = /^[A-Za-z\s]+$/; // Only letters and spaces
   const phoneRegex = /^[0-9]{11}$/; // 11-digit phone number
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/; // Email format
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.*[A-Z]).*$/;
 
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
@@ -70,7 +70,7 @@ function Signup() {
       phoneRef.current.focus();
       return;
     }
-{/*
+
     if (!email) {
       setEmailError("Email is required.");
       emailRef.current.focus();
@@ -80,7 +80,7 @@ function Signup() {
       emailRef.current.focus();
       return;
     }
-
+    
     if (!password) {
       setPasswordError("Password is required.");
       passwordRef.current.focus();
@@ -95,7 +95,7 @@ function Signup() {
       confirmPasswordRef.current.focus();
       setConfirmPasswordError("Passwords do not match.");
       return;
-    }*/}
+    }
 
     // Check if any field has an error
     if (
@@ -103,6 +103,7 @@ function Signup() {
       phoneError ||
       emailError ||
       passwordError ||
+      confirmPasswordError
     ) {
       setError("Please correct the errors in the form.");
       return;
