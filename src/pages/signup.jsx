@@ -41,7 +41,7 @@ function Signup() {
   // Function to handle form submission
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent the default form submission
-    setLoading(true);
+    
     // Reset all error messages
     setNameError("");
     setPhoneError("");
@@ -111,6 +111,7 @@ function Signup() {
 
     try {
       // Create a user with Firebase Authentication
+      setLoading(true)
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
