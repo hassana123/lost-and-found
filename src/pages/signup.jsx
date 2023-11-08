@@ -70,7 +70,7 @@ function Signup() {
       phoneRef.current.focus();
       return;
     }
-
+{/*
     if (!email) {
       setEmailError("Email is required.");
       emailRef.current.focus();
@@ -95,7 +95,7 @@ function Signup() {
       confirmPasswordRef.current.focus();
       setConfirmPasswordError("Passwords do not match.");
       return;
-    }
+    }*/}
 
     // Check if any field has an error
     if (
@@ -103,7 +103,6 @@ function Signup() {
       phoneError ||
       emailError ||
       passwordError ||
-      confirmPasswordError
     ) {
       setError("Please correct the errors in the form.");
       return;
