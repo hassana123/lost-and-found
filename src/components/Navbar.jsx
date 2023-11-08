@@ -62,12 +62,14 @@ const Navbar = () => {
               >
                 User Guide
               </NavLink>
+              {/*
               <NavLink
                 to="#"
                 className="text-white block my-5 text-sm font-semibold hover:text-purple-600 mr-4"
               >
                 Contact
               </NavLink>
+              */}
               <NavLink
                 to="/register"
                 className={({ isActive }) =>
@@ -122,12 +124,14 @@ const Navbar = () => {
               >
                 User Guide
               </NavLink>
+              {/*
               <NavLink
                 to="#"
                 className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
               >
                 Contact
               </NavLink>
+              */}
 
               <NavLink
                 to="/register"
