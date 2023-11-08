@@ -169,14 +169,14 @@ function Signup() {
 
             {/* Name Input */}
 
-            <fieldset className="border border-border px-2 h-[13vh] my-2 rounded-lg">
-              <legend className="block text-legend p-2">Name</legend>
+            <fieldset className="border border-border px-2 h-fit-content mb-8 rounded-lg">
+              <legend className="block text-legend px-2">Name</legend>
 
               <div className="">
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-3 py-2 border-none outline-none"
+                  className="w-full px-3 py-5 border-none outline-none"
                   placeholder="e.g. John Doe"
                   value={name}
                   onChange={(e) => {
@@ -193,14 +193,14 @@ function Signup() {
 
             {/* Phone Input */}
 
-            <fieldset className="border border-border  px-2 h-[13vh] my-2 rounded-lg">
-              <legend className="block text-legend p-2">Phone Number</legend>
+            <fieldset className="border border-border h-fit-content  px-2  mb-8 rounded-lg">
+              <legend className="block text-legend px-2">Phone Number</legend>
 
               <div className="">
                 <input
                   type="tel"
                   id="phone"
-                  className="w-full px-3 py-2 border-none outline-none"
+                  className="w-full px-3 py-5 border-none outline-none"
                   placeholder="e.g. 08122990011"
                   value={phone}
                   onChange={(e) => {
@@ -219,14 +219,14 @@ function Signup() {
 
             {/* Email Input */}
 
-            <fieldset className="border border-border px-1 h-[15vh] my-2 rounded-lg">
-              <legend className="block text-legend p-2">Email</legend>
+            <fieldset className="border border-border px-1 h-fit-content mb-8 rounded-lg">
+              <legend className="block text-legend px-2">Email</legend>
 
               <div className="">
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-3 py-2 border-none outline-none"
+                  className="w-full px-3 py-5 border-none outline-none"
                   placeholder="e.g. email@gmail.com"
                   value={email}
                   onChange={(e) => {
@@ -245,14 +245,14 @@ function Signup() {
 
             {/* Password Input */}
 
-            <fieldset className="border border-border px-2 h-[13vh] my-2 rounded-lg">
-              <legend className="block text-legend p-2">Password</legend>
+            <fieldset className="border border-border px-2 h-fit-content mb-8 rounded-lg">
+              <legend className="block text-legend px-2">Password</legend>
 
               <div className="">
                 <input
                   type="password"
                   id="password"
-                  className={`w-full px-3  my-5 py-2 border-none outline-none ${
+                  className={`w-full px-3  py-5 border-none outline-none ${
                     passwordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
@@ -273,15 +273,15 @@ function Signup() {
 
             {/* Confirm Password Input */}
 
-            <fieldset className="border border-border  px-2 h-[13vh] my-2 rounded-lg">
-              <legend className="block text-legend p-2">
+            <fieldset className="border border-border  px-2 h-fit-content my-2 rounded-lg">
+              <legend className="block text-legend px-2">
                 Confirm Password
               </legend>
               <div className="">
                 <input
                   type="password"
                   id="confirmPassword"
-                  className={`w-full px-3 my-5 py-2 border-none outline-none ${
+                  className={`w-full px-3 py-5 border-none outline-none ${
                     confirmPasswordError ? "border-red-500" : ""
                   }`}
                   placeholder="********"
