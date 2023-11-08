@@ -310,7 +310,7 @@ function Signup() {
             </button>
           </form>
 
-          <div className="text-center mt-4 text-secondary">
+          <div className="text-center mt-4 mb-10 text-secondary">
             <small>
               Already have an Account
               <a
