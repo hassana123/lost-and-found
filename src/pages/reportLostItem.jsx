@@ -75,7 +75,7 @@ function ReportLostItem() {
       }
     } else {
       // If no image is selected, save the item data without an image URL
-      saveItemToFirestore(userId, "");
+      saveItemToFirestore(userId, "", timestamp);
       setFormSubmitted(true);
       setLoading(false)
     }
@@ -187,6 +187,7 @@ function ReportLostItem() {
                 accept="image/*"
                 placeholder="Uplaod Image"
                 onChange={handleImageUpload}
+                required
               />
             </div>
             <button
