@@ -7,6 +7,7 @@ import Logout from "./pages/logout";
 import Signup from "./pages/signup";
 import LostItems from "./pages/lostItems";
 import About from "./pages/about";
+import UserGuide from "./pages/userGuide";
 import ReportLostItem from "./pages/reportLostItem";
 import LostItemDetails from "./pages/details";
 import ProfilePage from "./pages/profilePage";
@@ -14,8 +15,7 @@ import ClaimedItems from "./pages/claimedItems";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import MarkItems from "./pages/markItems";
 function App() {
-  // localStorage.clear();
-  // localStorage.removeItem("userId");
+ 
   return (
     <BrowserRouter>
       <div className="bg-white font-montserrat capitalize">
@@ -24,6 +24,7 @@ function App() {
           <Route path="/register" element={<Signup />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/guide" element={<UserGuide />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/report" element={<ReportLostItem />} />
           <Route path="/items" element={<LostItems />} />
