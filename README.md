@@ -1,88 +1,81 @@
-# Lost and Found Website
+# Reclaim Hub - Lost and Found Website
 
-This Lost and Found website is built using Vite and React, providing a platform for users to report lost items and search for found items. Whether you've lost something valuable or found something that doesn't belong to you, this website aims to connect people with their lost belongings.
+Reclaim Hub is a Lost and Found website built using Vite and React. It provides a platform for users to report lost items, search for found items, and connect with their belongings.
 
 ## Features
 
-- **Report Lost Items**: Users can easily report items they have lost by providing details such as item description, date, and location where it was lost.
+- **User Authentication**: Sign up or log in to access the dashboard, report lost items, and manage your profile.
+  
+- **Dashboard**: The central hub where users can view misplaced items, report lost items, view their reported items, view claimed items, update their profile, and log out.
 
-- **Search Found Items**: Users can search for items that have been found by others. The search functionality allows them to filter and find matching items.
+- **View Misplaced or Lost Items**: Browse a collection of reported items, view details, and claim items to connect with the person who found them.
 
-- **User-Friendly Interface**: The website features an intuitive and user-friendly interface that makes it easy for both lost item reporters and those who found items to navigate and interact with the platform.
+- **Report Lost Item**: Easily report lost items by providing details and uploading an image. Your reported items are categorized into Pending, Claimed, and Unclaimed.
 
-- **Fast Development with Vite**: The project is built using Vite, a build tool that provides a fast development environment, ensuring efficient code compilation and quick development feedback.
+- **View Claimed Items in General**: Explore a page with all items that have been claimed by users.
+
+- **Update Profile**: Add, remove, or change your profile image, and update your name, username, and phone number.
 
 ## Getting Started
 
-To run this project on your local machine, follow these steps:
+To set up this project on your local machine, follow these steps:
 
 1. **Clone the Repository**:
 
-   ```bash
-   git clone https://github.com/yourusername/lost-and-found.git
-   cd lost-and-found
    ```
+   git clone https://github.com/yourusername/reclaim-hub.git
+   cd reclaim-hub 
 
-2. **Install Dependencies**:
 
-   ```bash
-   npm install
-   ```
+2. Install Dependencies:
+   ``` npm install ```
+   
+3. Set Up Firebase and Firestore:
+ - Create a Firebase project and set up Firestore.
+ - Add your Firebase configuration in the project.
 
-3. **Start the Development Server**:
-
-   ```bash
-   npm run dev
-   ```
-
-   The development server will start, and you can access the website at [http://localhost:3000](http://localhost:3000).
+4. Start the Development Server:
+```npm run dev```
+Access the website at http://localhost:5173.
 
 ## Usage
-
-- **Reporting a Lost Item**: To report a lost item, click on the "Report Lost Item" button on the website's home page. Fill out the required details about the lost item and submit the report.
-
-- **Searching for Found Items**: To search for found items, use the search bar on the website's home page. You can filter and narrow down your search results to find items that match your lost item's description.
+1. Reporting a Lost Item: Click on "Report Lost Item" in the dashboard. Fill out the required details and submit the report.
+2. Viewing Misplaced Items: Explore the "View Misplaced Items" page in the dashboard to find lost items reported by others.
 
 ## Contributing
-
-Contributions to this project are welcome! If you'd like to contribute, please follow these steps:
+Contributions to this project are welcome! Follow these steps:
 
 1. Fork the repository on GitHub.
 
-2. Clone your forked repository to your local machine:
+2. Clone your forked repository:
 
-   ```bash
-   git clone https://github.com/yourusername/lost-and-found.git
-   ```
 
-3. Create a new branch for your feature or bug fix:
+```git clone https://github.com/yourusername/reclaim-hub.git``
 
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+3. Create a new branch:
 
-4. Make your changes and commit them:
+```git checkout -b feature/your-feature-name```
 
-   ```bash
-   git commit -m "Add your commit message here"
-   ```
+4.Make your changes and commit them:
 
-5. Push your changes to your fork on GitHub:
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+```git commit -m "Add your commit message here"```
+5. Push changes to your fork on GitHub:
 
-6. Open a pull request on the original repository, explaining your changes and why they should be merged.
+```git push origin feature/your-feature-name```
+
+6. Open a pull request on the original repository, explaining your changes.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://www.mit) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://www.mit) file for details.
 
 ## Acknowledgments
 
-- This project was created with the help of [Vite](https://vitejs.dev/) and [React](https://reactjs.org/).
+- Built with [Vite](https://vitejs.dev/) and [React](https://reactjs.org/).
+- Firebase and Firestore for backend services.
 
 ## Contact
 
-If you have any questions or feedback, please feel free to contact us at [Hassana Abdullahi](hassanaabdll1@gmail.com).
+For questions or feedback, contact us at [Hassana Abdullahi](hassanaabdll1@gmail.com).
+For questions or feedback, contact us at [Hassana Abdullahi](hassanaabdll1@gmail.com)
